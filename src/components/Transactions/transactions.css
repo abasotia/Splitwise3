@@ -1,0 +1,14 @@
+.transac {
+  background-color: lightblue;
+  padding-bottom: 5vh;
+  padding-top: 3vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.transac-heading {
+  font-style: italic;
+  align-items: center;
+  text-align: center;
+  padding: 0.1vh;
+}

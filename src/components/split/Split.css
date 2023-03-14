@@ -1,0 +1,82 @@
+/* #split_mainContainer {
+  background-color: lightblue;
+  padding-bottom: 5vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+#split_mainContainer .addExpense {
+  margin: 1vh;
+  width: 100%;
+}
+
+
+#split_mainContainer .mainList .listItem .deletebtn {
+  background-color: red;
+  color: white;
+  border-radius: 10rem;
+}
+#split_mainContainer .users_list {
+  width: 23vw;
+}
+
+.inputBox {
+  width: 200px;
+} */
+
+#split_mainContainer {
+  background-color: lightblue;
+  padding: 5vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+#split_mainContainer .addExpense {
+  display: flex;
+  flex-direction: column;
+  margin: 1vh;
+  width: 100%;
+}
+.inp {
+  display: flex-;
+  padding: 5px;
+  margin: 1vh;
+  width: 50%;
+}
+/* #split_mainContainer .mainList {
+  margin: 2vh 5vh 2vh 5vh;
+} */
+/* #split_mainContainer .mainList .listItem {
+  box-shadow: 1px 1px 1px 1px rgb(20, 59, 255);
+  padding: 1vh;
+  margin-bottom: 1vh;
+} */
+
+/* .container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.addExpense {
+  flex: 1;
+} */
+
+#split_mainContainer .mainList .listItem .deletebtn {
+  background-color: red;
+  color: white;
+  border-radius: 10rem;
+}
+#split_mainContainer .users_list {
+  width: 23vw;
+}
+
+/* .inputBox {
+  width: 200px;
+} */
+
+/* .container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.addExpense {
+  flex: 1;
+} */
