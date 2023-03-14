@@ -44,7 +44,7 @@ const New = () => {
             />
           }
           title={'You Owe'}
-          value={owe}
+          value={owe || 0}
         />
         <DashboardCard
           icon={
@@ -59,7 +59,7 @@ const New = () => {
             />
           }
           title={'Others Owe You'}
-          value={owed}
+          value={owed || 0}
         />
       </Space>
 

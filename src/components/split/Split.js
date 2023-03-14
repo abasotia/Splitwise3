@@ -38,6 +38,7 @@ const Split = () => {
     let split_values ={} 
     let people_list = ''
 
+    console.log("qwerty")
     // check for type of splits
     if (splitMethod === 'equal')
     {
@@ -102,51 +103,19 @@ const Split = () => {
         return ''
       })
     }
-    // console.log("Before Dispatch", splitValues)
-    dispatch(addExpense(description,Date.now(),split_values,selectedUser, selectedPayee, inputValue))
+
+    console.log("Before Dispatch", split_values)
+    dispatch(addExpense(description, Date.now(), split_values, selectedUser, selectedPayee, inputValue))
 
     localStorage.setItem('transaction_book', JSON.stringify(transaction_book))
     localStorage.setItem('net_transactions', JSON.stringify(net_transactions))
-    // let splitValue, splitMethod, percentage, splitValues
-    // if (splitMethod === 'percentage') {
-    //   const totalPercentage = selectedUser.reduce(
-    //     (acc, user) => acc + percentage[user],
-    //     0
-    //   )
-    //   if (totalPercentage !== 100) {
-    //     // Handle error if total percentage is not 100
-    //     return "error"
-    //   }
-    //   let splitValue = {}
-    //   selectedUser.forEach((user) => {
-    //     splitValue[user] = ((inputValue * percentage[user]) / 100).toFixed(2)
-    //   })
-    // } else {
-    //   // splitMethod is 'manual'
-
-    //   const splitValuesTemp = selectedUser.map((user) => {
-    //     return split_values[user]
-    //   })
-    //   console.log("splitValuesTemp",splitValuesTemp)
-    //   setSplitValues([...splitValuesTemp])
-    //   console.log(splitValues)
-    //   let n = Object.keys(splitValues).length
-    //   if (n !== selectedUser.length) {
-    //     // Handle error if number of split values doesn't match number of selected users
-    //     return "Error"
-    //   }
-    //   let splitValue = {}
-    //   selectedUser.forEach((user, index) => {
-    //     splitValue[user] = splitValues[index]
-    //   })
-    // }
 
 
     // create New Expense template for ExpensesData
     const newExpense = {
       total: inputValue,
       description: description ? description : '',
-      split_value: (inputValue / selectedUser.length).toFixed(2),
+      split_value: split_values,
       // split_value: splitValue,
       payee: selectedPayee,
       id: Date.now(),
@@ -157,30 +126,26 @@ const Split = () => {
     const updatedData = [...data, newExpense]
     console.log(updatedData)
     setData(updatedData)
-    console.log('qwertyu')
     localStorage.setItem('expensesData', JSON.stringify(updatedData))
-    dispatch(
-      addExpense(
-        newExpense.description,
-        newExpense.id,
-        newExpense.split_value,
-        newExpense.PaidFor,
-        newExpense.payee,
-        newExpense.total
-      )
-    )
+
 
     let balance_book = JSON.parse(localStorage.getItem('balance_book'))
+    console.log("Before", balance_book)
+    console.log(balance_book)
+    // console.log(balance_book[newExpense.payee].owed + parseInt(newExpense.total))
     balance_book[newExpense.payee].owed += parseInt(newExpense.total)
     selectedUser.forEach((user) => {
+          // console.log(balance_book[user].owed - parseInt(newExpense.split_value[user]))
       if (newExpense.payee === user) {
-        balance_book[user].owed -= parseInt(newExpense.split_value)
+        balance_book[user].owed -= parseInt(newExpense.split_value[user])
       } else {
-        balance_book[user].owe += parseInt(newExpense.split_value)
+        balance_book[user].owe += parseInt(newExpense.split_value[user])
       }
     })
-    console.log(balance_book)
+    // console.log("Balance Book", balance_book)
     localStorage.setItem('balance_book', JSON.stringify(balance_book))
+
+
     setInputValue('')
     setSelectedUser()
     setSelectedPayee()
@@ -274,6 +239,7 @@ const Split = () => {
               let splitValuesInput = e.target.value.split(",")
               console.log("splitValuesInput",splitValuesInput)
               setSplitValues(splitValuesInput)
+              
 
             }}
             placeholder='Enter comma seperated values'

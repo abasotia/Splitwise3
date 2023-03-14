@@ -5,7 +5,7 @@ export const addExpense = (
   id,
   split_value,
   PaidFor,
-  Payee,
+  payee,
   total
 ) => {
   return {
@@ -15,7 +15,7 @@ export const addExpense = (
       id,
       split_value,
       PaidFor,
-      Payee,
+      payee,
       total,
     },
   }
